@@ -1,0 +1,686 @@
+local Carl = {}
+if game:GetService("CoreGui"):FindFirstChild("Caramell") then
+    game:GetService("CoreGui"):FindFirstChild("Caramell"):Destroy()
+end
+
+local Caramell = Instance.new("ScreenGui")
+Caramell.Name = "Caramell"
+Caramell.Parent = game:WaitForChild("CoreGui")
+Caramell.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+function Carl:Window(text,clr,toclose)
+    local Tabs = {}
+    local fs = false
+    local MainStroke = Instance.new("Frame")
+    local MainStrokeCorner = Instance.new("UICorner")
+    local Main = Instance.new("Frame")
+    local MainCorner = Instance.new("UICorner")
+    local Head = Instance.new("Frame")
+    local HeadList = Instance.new("UIListLayout")
+    local HeadCorner = Instance.new("UICorner")
+    local Name = Instance.new("TextLabel")
+    local TabBar = Instance.new("ScrollingFrame")
+local TabBarPadding = Instance.new("UIPadding")
+local TabBarList = Instance.new("UIListLayout")
+local TabsWindowsBack = Instance.new("Frame")
+
+
+    MainStroke.Name = "MainStroke"
+    MainStroke.Parent = Caramell
+    MainStroke.AnchorPoint = Vector2.new(0.5, 0.5)
+    MainStroke.BackgroundColor3 = clr
+    MainStroke.Position = UDim2.new(0.5, 0, 0.5, 0)
+    MainStroke.Size = UDim2.new(0, 585, 0, 364)
+
+    MainStrokeCorner.CornerRadius = UDim.new(0, 5)
+    MainStrokeCorner.Name = "MainStrokeCorner"
+    MainStrokeCorner.Parent = MainStroke
+
+    Main.Name = "Main"
+Main.Parent = MainStroke
+Main.AnchorPoint = Vector2.new(0.5, 0.5)
+Main.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+Main.Position = UDim2.new(0.5, 0, 0.5, 0)
+Main.Selectable = true
+Main.Size = UDim2.new(0, 580, 0, 359)
+
+MainCorner.CornerRadius = UDim.new(0, 5)
+MainCorner.Name = "MainCorner"
+MainCorner.Parent = Main
+
+Head.Name = "Head"
+Head.Parent = Main
+Head.BackgroundColor3 = Color3.fromRGB(33, 33, 33)
+Head.BorderSizePixel = 0
+Head.Size = UDim2.new(0, 580, 0, 25)
+
+HeadList.Name = "HeadList"
+HeadList.Parent = Head
+HeadList.HorizontalAlignment = Enum.HorizontalAlignment.Center
+HeadList.SortOrder = Enum.SortOrder.LayoutOrder
+
+HeadCorner.CornerRadius = UDim.new(0, 5)
+HeadCorner.Name = "HeadCorner"
+HeadCorner.Parent = Head
+
+Name.Name = "Name"
+Name.Parent = Head
+Name.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Name.BackgroundTransparency = 1.000
+Name.BorderSizePixel = 0
+Name.Position = UDim2.new(0.327586204, 0, 0, 0)
+Name.Size = UDim2.new(0, 200, 0, 25)
+Name.Font = Enum.Font.Gotham
+Name.Text = text
+Name.TextColor3 = Color3.fromRGB(138, 138, 138)
+Name.TextSize = 14.000
+
+TabBar.Name = "TabBar"
+TabBar.Parent = Main
+TabBar.Active = true
+TabBar.BackgroundColor3 = Color3.fromRGB(33, 33, 33)
+TabBar.BorderSizePixel = 0
+TabBar.Position = UDim2.new(0.0103448275, 0, 0.0863509774, 0)
+TabBar.Size = UDim2.new(0, 167, 0, 322)
+TabBar.ScrollBarThickness = 0
+TabBar.CanvasSize = UDim2.new(0, 0, 0, 0)
+
+TabBarPadding.Name = "TabBarPadding"
+TabBarPadding.Parent = TabBar
+TabBarPadding.PaddingTop = UDim.new(0, 3)
+
+TabBarList.Name = "TabBarList"
+TabBarList.Parent = TabBar
+TabBarList.HorizontalAlignment = Enum.HorizontalAlignment.Center
+TabBarList.SortOrder = Enum.SortOrder.LayoutOrder
+TabBarList.Padding = UDim.new(0, 3)
+
+TabsWindowsBack.Name = " TabsWindowsBack"
+TabsWindowsBack.Parent = Main
+TabsWindowsBack.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TabsWindowsBack.Position = UDim2.new(0.318965524, 0, 0.0974930376, 0)
+TabsWindowsBack.Size = UDim2.new(0, 388, 0, 317)
+TabsWindowsBack.BorderSizePixel = 0
+
+local uitg = false
+local lastpos 
+game:GetService("UserInputService").InputBegan:Connect(function(k,p)
+    if not p then
+        if k.KeyCode == toclose then
+            if uitg == false then
+                MainStroke:TweenPosition(UDim2.new(0.5,0,-0.5,0),Enum.EasingDirection.Out, Enum.EasingStyle.Quart,.6,true)
+                lastpos = MainStroke.Position
+                uitg = true
+                wait(.5)
+                Caramell.Enabled = false
+            else
+                MainStroke:TweenPosition(UDim2.new(0.5,0,0.5),Enum.EasingDirection.Out, Enum.EasingStyle.Quart,.6,true)
+                Caramell.Enabled = true
+                uitg = false
+            end
+
+        end
+
+    end
+end)
+
+function Tabs:Tab(texts)
+    local TabsDetail = {}
+    local TabStroke = Instance.new("Frame")
+    local Tab = Instance.new("TextButton")
+    local TabCorner = Instance.new("UICorner")
+    local TabStrokeCorner = Instance.new("UICorner")
+    local TabStrokeList = Instance.new("UIListLayout")
+    local TabWindows = Instance.new("ScrollingFrame")
+local TabsWindowsPadding = Instance.new("UIPadding")
+local TabsWindowsList = Instance.new("UIListLayout")
+
+    TabStroke.Name = "TabStroke"
+    TabStroke.Parent = TabBar
+    TabStroke.BackgroundColor3 = clr
+    TabStroke.Size = UDim2.new(0, 162, 0, 30)
+
+    Tab.Name = "Tab"
+    Tab.Parent = TabStroke
+    Tab.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+Tab.Size = UDim2.new(0, 160, 0, 28)
+Tab.Font = Enum.Font.SourceSans
+Tab.TextColor3 = Color3.fromRGB(191, 191, 191)
+Tab.TextSize = 20.000
+Tab.Text = texts
+
+TabCorner.CornerRadius = UDim.new(0, 3)
+TabCorner.Name = "TabCorner"
+TabCorner.Parent = Tab
+
+TabStrokeCorner.CornerRadius = UDim.new(0, 3)
+TabStrokeCorner.Name = "TabStrokeCorner"
+TabStrokeCorner.Parent = TabStroke
+
+TabStrokeList.Name = "TabStrokeList"
+TabStrokeList.Parent = TabStroke
+TabStrokeList.HorizontalAlignment = Enum.HorizontalAlignment.Center
+TabStrokeList.SortOrder = Enum.SortOrder.LayoutOrder
+TabStrokeList.VerticalAlignment = Enum.VerticalAlignment.Center
+
+TabWindows.Name = "TabWindows"
+TabWindows.Parent = TabsWindowsBack
+TabWindows.Active = true
+TabWindows.BackgroundColor3 = Color3.fromRGB(33, 33, 33)
+TabWindows.BorderSizePixel = 0
+TabWindows.Position = UDim2.new(-0.00113552925, 0, -0.000350969378, 0)
+TabWindows.Size = UDim2.new(0, 391, 0, 322)
+TabWindows.ScrollBarThickness = 0
+TabWindows.CanvasSize = UDim2.new(0, 0, 0, 0)
+TabWindows.Visible = false
+
+TabsWindowsPadding.Name = "TabsWindowsPadding"
+TabsWindowsPadding.Parent = TabWindows
+TabsWindowsPadding.PaddingTop = UDim.new(0, 3)
+
+TabsWindowsList.Name = "TabsWindowsList"
+TabsWindowsList.Parent = TabWindows
+TabsWindowsList.HorizontalAlignment = Enum.HorizontalAlignment.Center
+TabsWindowsList.SortOrder = Enum.SortOrder.LayoutOrder
+TabsWindowsList.Padding = UDim.new(0, 3)
+
+
+
+if fs == false then
+    fs = true
+    Tab.TextColor3 = Color3.fromRGB(255,255,255)
+    TabWindows.Visible = true
+end
+
+Tab.MouseButton1Click:Connect(function()
+    for i,v in next, TabsWindowsBack:GetChildren() do
+        if v.Name == "TabWindows" then
+           v.Visible = false 
+        end
+        TabWindows.Visible = true
+    end
+
+    for i,v in next,TabBar:GetChildren() do
+        if v.Name == "TabStroke" then
+            v.Tab.TextColor3 = Color3.fromRGB(191, 191, 191)
+        end
+        Tab.TextColor3 = Color3.fromRGB(255,255,255)
+
+    end
+
+end)
+
+function TabsDetail:Label(lbtext)
+    local Label = Instance.new("Frame")
+local LabelCorner = Instance.new("UICorner")
+local LabelList = Instance.new("UIListLayout")
+local LabelText = Instance.new("TextLabel")
+local LabelTextCorner = Instance.new("UICorner")
+
+Label.Name = "Label"
+Label.Parent = TabWindows
+Label.BackgroundColor3 = clr
+Label.Size = UDim2.new(0, 385, 0, 30)
+
+LabelCorner.CornerRadius = UDim.new(0, 3)
+LabelCorner.Name = "LabelCorner"
+LabelCorner.Parent = Label
+
+LabelList.Name = "LabelList"
+LabelList.Parent = Label
+LabelList.HorizontalAlignment = Enum.HorizontalAlignment.Center
+LabelList.SortOrder = Enum.SortOrder.LayoutOrder
+LabelList.VerticalAlignment = Enum.VerticalAlignment.Center
+
+LabelText.Name = "LabelText"
+LabelText.Parent = Label
+LabelText.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+LabelText.Size = UDim2.new(0, 383, 0, 28)
+LabelText.Font = Enum.Font.Gotham
+LabelText.TextColor3 = Color3.fromRGB(188, 188, 188)
+LabelText.TextSize = 14.000
+LabelText.Text = lbtext
+
+LabelTextCorner.CornerRadius = UDim.new(0, 3)
+LabelTextCorner.Name = "LabelTextCorner"
+LabelTextCorner.Parent = LabelText
+TabWindows.CanvasSize = UDim2.new(0, 0, 0, TabsWindowsList.AbsoluteContentSize.Y+3)
+end
+
+function TabsDetail:Button(Text,callback)
+    local Button = Instance.new("Frame")
+    local ButtonCorner = Instance.new("UICorner")
+    local ButtonList = Instance.new("UIListLayout")
+    local ButtonEvent = Instance.new("TextButton")
+    local ButtonEventCorner = Instance.new("UICorner")
+    
+    
+    Button.Name = "Button"
+    Button.Parent = TabWindows
+    Button.BackgroundColor3 = clr
+    Button.Size = UDim2.new(0, 385, 0, 30)
+    
+    ButtonCorner.CornerRadius = UDim.new(0, 3)
+    ButtonCorner.Name = "ButtonCorner"
+    ButtonCorner.Parent = Button
+    
+    ButtonList.Name = "ButtonList"
+    ButtonList.Parent = Button
+    ButtonList.HorizontalAlignment = Enum.HorizontalAlignment.Center
+    ButtonList.SortOrder = Enum.SortOrder.LayoutOrder
+    ButtonList.VerticalAlignment = Enum.VerticalAlignment.Center
+    
+    ButtonEvent.Name = "ButtonEvent"
+    ButtonEvent.Parent = Button
+    ButtonEvent.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+    ButtonEvent.Size = UDim2.new(0, 383, 0, 28)
+    ButtonEvent.Font = Enum.Font.Gotham
+    ButtonEvent.Text = Text
+    ButtonEvent.TextColor3 = Color3.fromRGB(255, 255, 255)
+    ButtonEvent.TextSize = 14.000
+    
+    ButtonEventCorner.CornerRadius = UDim.new(0, 3)
+    ButtonEventCorner.Name = "ButtonEventCorner"
+    ButtonEventCorner.Parent = ButtonEvent
+
+    ButtonEvent.MouseButton1Click:Connect(function()
+        pcall(callback)
+    end)
+    TabWindows.CanvasSize = UDim2.new(0, 0, 0, TabsWindowsList.AbsoluteContentSize.Y+3)
+end
+
+function TabsDetail:Line() 
+    local Line = Instance.new("Frame")
+    local LineCorner = Instance.new("UICorner")
+    
+    Line.Name = "Line"
+    Line.Parent = TabWindows
+    Line.BackgroundColor3 = clr
+    Line.BorderColor3 = Color3.fromRGB(27, 42, 53)
+    Line.BorderSizePixel = 0
+    Line.Size = UDim2.new(0, 385, 0, 3)
+    
+    LineCorner.CornerRadius = UDim.new(0, 3)
+    LineCorner.Name = "LineCorner"
+    LineCorner.Parent = Line
+    TabWindows.CanvasSize = UDim2.new(0, 0, 0, TabsWindowsList.AbsoluteContentSize.Y+3)
+end
+
+function TabsDetail:Toggle(texttg,status,callback)
+local tg = status
+local Toggle = Instance.new("Frame")
+local ToggleCorner = Instance.new("UICorner")
+local ToggleList = Instance.new("UIListLayout")
+local ToggleText = Instance.new("TextLabel")
+local ToggleCorner_2 = Instance.new("UICorner")
+local ToggleEvent = Instance.new("TextButton")
+
+Toggle.Name = "Toggle"
+Toggle.Parent = TabWindows
+Toggle.BackgroundColor3 = clr
+Toggle.Size = UDim2.new(0, 385, 0, 30)
+
+ToggleCorner.CornerRadius = UDim.new(0, 3)
+ToggleCorner.Name = "ToggleCorner"
+ToggleCorner.Parent = Toggle
+
+ToggleList.Name = "ToggleList"
+ToggleList.Parent = Toggle
+ToggleList.HorizontalAlignment = Enum.HorizontalAlignment.Center
+ToggleList.SortOrder = Enum.SortOrder.LayoutOrder
+ToggleList.VerticalAlignment = Enum.VerticalAlignment.Center
+
+ToggleText.Name = "ToggleText"
+ToggleText.Parent = Toggle
+ToggleText.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+ToggleText.Size = UDim2.new(0, 383, 0, 28)
+ToggleText.Font = Enum.Font.Gotham
+ToggleText.TextColor3 = Color3.fromRGB(188, 188, 188)
+ToggleText.TextSize = 14.000
+ToggleText.Text = texttg
+ToggleText.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
+
+ToggleCorner_2.CornerRadius = UDim.new(0, 3)
+ToggleCorner_2.Name = "ToggleCorner"
+ToggleCorner_2.Parent = ToggleText
+
+ToggleEvent.Parent = ToggleText
+ToggleEvent.Position = UDim2.new(0.94, 0,0.214, 0)
+ToggleEvent.Size = UDim2.new(0, 15, 0, 15)
+ToggleEvent.Font = Enum.Font.SourceSans
+ToggleEvent.Text = ""
+ToggleEvent.TextColor3 = Color3.fromRGB(0, 0, 0)
+ToggleEvent.TextSize = 14.000
+
+if status == false then
+    ToggleEvent.BackgroundColor3 = Color3.fromRGB(138, 138, 138)    
+else
+    ToggleEvent.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+end
+ToggleEvent.MouseButton1Click:Connect(function()
+    if tg == false then
+        ToggleEvent.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+        wait()
+    else
+        ToggleEvent.BackgroundColor3 = Color3.fromRGB(138, 138, 138)
+        wait()
+    end
+    tg = not tg
+    pcall(callback,tg)
+
+end
+)
+TabWindows.CanvasSize = UDim2.new(0, 0, 0, TabsWindowsList.AbsoluteContentSize.Y+3)
+end
+function TabsDetail:Dropdown(textdd,list,callback)
+    local ddDetail = {}
+    local tgdd = false
+    local Dropdown = Instance.new("Frame")
+    local DropdownCorner = Instance.new("UICorner")
+    local DropdownList = Instance.new("UIListLayout")
+    local DropdownEvent = Instance.new("TextButton")
+    local DropdownEventCorner = Instance.new("UICorner")
+    local DropdownPadding = Instance.new("UIPadding")
+    local DropItem = Instance.new("ScrollingFrame")
+    local DropItemList = Instance.new("UIListLayout")
+    
+    Dropdown.Name = "Dropdown"
+    Dropdown.Parent = TabWindows
+    Dropdown.BackgroundColor3 = clr
+    Dropdown.Position = UDim2.new(0.00767263444, 0, 0.329153597, 0)
+    Dropdown.Size = UDim2.new(0, 385, 0, 30)
+    Dropdown.ClipsDescendants = true
+    DropdownCorner.CornerRadius = UDim.new(0, 3)
+    DropdownCorner.Name = "DropdownCorner"
+    DropdownCorner.Parent = Dropdown
+    
+    DropdownList.Name = "DropdownList"
+    DropdownList.Parent = Dropdown
+    DropdownList.HorizontalAlignment = Enum.HorizontalAlignment.Center
+    DropdownList.SortOrder = Enum.SortOrder.LayoutOrder
+    DropdownList.Padding = UDim.new(0, 3)
+    
+    DropdownEvent.Name = "DropdownEvent"
+    DropdownEvent.Parent = Dropdown
+    DropdownEvent.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+    DropdownEvent.Size = UDim2.new(0, 383, 0, 28)
+    DropdownEvent.Font = Enum.Font.Gotham
+    DropdownEvent.TextColor3 = Color3.fromRGB(255, 255, 255)
+    DropdownEvent.TextSize = 14.000
+    DropdownEvent.Text = textdd
+    
+    DropdownEventCorner.CornerRadius = UDim.new(0, 3)
+    DropdownEventCorner.Name = "DropdownEventCorner"
+    DropdownEventCorner.Parent = DropdownEvent
+    
+    DropdownPadding.Name = "DropdownPadding"
+    DropdownPadding.Parent = Dropdown
+    DropdownPadding.PaddingTop = UDim.new(0, 1)
+    
+    DropItem.Name = "DropItem"
+    DropItem.Parent = Dropdown
+    DropItem.Active = true
+    DropItem.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    DropItem.BackgroundTransparency = 1.000
+    DropItem.Position = UDim2.new(0.00259740255, 0, 0.235294119, 0)
+    DropItem.Size = UDim2.new(0, 383, 0, 84)
+    DropItem.CanvasSize = UDim2.new(0, 0, 0, 0)
+    DropItem.ScrollBarThickness = 0
+    
+    DropItemList.Name = "DropItemList"
+    DropItemList.Parent = DropItem
+    DropItemList.HorizontalAlignment = Enum.HorizontalAlignment.Center
+    DropItemList.SortOrder = Enum.SortOrder.LayoutOrder
+    
+    DropdownEvent.MouseButton1Click:Connect(function()
+        if tgdd == false then
+            Dropdown:TweenSize(UDim2.new(0, 385,0, 120),Enum.EasingDirection.Out, Enum.EasingStyle.Quart, .6, true)
+            wait()
+        else
+            Dropdown:TweenSize(UDim2.new(0, 385,0, 30),Enum.EasingDirection.Out, Enum.EasingStyle.Quart, .6, true)
+            wait()
+        end
+        tgdd = not tgdd
+    end
+    )
+
+    for i,v in next, list do
+        if #list == 1 then
+            DropItem.Size = UDim2.new(0, 383, 0, 28)
+        elseif #list == 2 then
+            DropItem.Size = UDim2.new(0, 383, 0, 56)
+        elseif #list >= 3 then
+            DropItem.Size = UDim2.new(0, 383, 0, 84)
+        end
+        local DropdownPutEvent = Instance.new("TextButton")
+        DropdownPutEvent.Name = "DropdownPutEvent"
+    DropdownPutEvent.Parent = DropItem
+    DropdownPutEvent.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    DropdownPutEvent.BackgroundTransparency = 1.000
+    DropdownPutEvent.Size = UDim2.new(0, 383, 0, 28)
+    DropdownPutEvent.Font = Enum.Font.Gotham
+    DropdownPutEvent.TextColor3 = Color3.fromRGB(255, 255, 255)
+    DropdownPutEvent.TextSize = 14.000
+    DropdownPutEvent.Text = v
+    
+    DropdownPutEvent.MouseButton1Click:Connect(function()
+        pcall(callback,v)
+        DropdownEvent.Text = textdd..": "..v
+        Dropdown:TweenSize(UDim2.new(0, 385,0, 30),Enum.EasingDirection.Out, Enum.EasingStyle.Quart, .6, true)
+        wait()
+        tgdd = not tgdd
+    end)
+    DropItem.CanvasSize = UDim2.new(0, 0, 0, DropItemList.AbsoluteContentSize.Y+3)
+    end
+
+    function ddDetail:Refresh(lists)
+        for i,v in next, DropItem:GetChildren() do
+            if v.Name == "DropdownPutEvent" then
+                v:Destroy()
+            end
+        end
+
+        for i,v in next, lists do
+            if #list == 1 then
+                DropItem.Size = UDim2.new(0, 383, 0, 28)
+            elseif #list == 2 then
+                DropItem.Size = UDim2.new(0, 383, 0, 56)
+            elseif #list >= 3 then
+                DropItem.Size = UDim2.new(0, 383, 0, 84)
+            end
+            local DropdownPutEvent = Instance.new("TextButton")
+            DropdownPutEvent.Name = "DropdownPutEvent"
+        DropdownPutEvent.Parent = DropItem
+        DropdownPutEvent.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        DropdownPutEvent.BackgroundTransparency = 1.000
+        DropdownPutEvent.Size = UDim2.new(0, 383, 0, 28)
+        DropdownPutEvent.Font = Enum.Font.Gotham
+        DropdownPutEvent.TextColor3 = Color3.fromRGB(255, 255, 255)
+        DropdownPutEvent.TextSize = 14.000
+        DropdownPutEvent.Text = v
+        
+        DropdownPutEvent.MouseButton1Click:Connect(function()
+            pcall(callback,v)
+            DropdownEvent.Text = textdd..": "..v
+            Dropdown:TweenSize(UDim2.new(0, 385,0, 30),Enum.EasingDirection.Out, Enum.EasingStyle.Quart, .6, true)
+            wait()
+            tgdd = not tgdd
+        end)
+        DropItem.CanvasSize = UDim2.new(0, 0, 0, DropItemList.AbsoluteContentSize.Y+3)
+    end
+end
+return ddDetail
+end
+
+function TabsDetail:TextBox(texttb,callback)
+    local TextBox = Instance.new("Frame")
+local TextboxList = Instance.new("UIListLayout")
+local TextBox_2 = Instance.new("TextBox")
+local TextBoxBoxtCorner = Instance.new("UICorner")
+local TextboxCorner = Instance.new("UICorner")
+
+
+TextBox.Name = "TextBox"
+TextBox.Parent = TabWindows
+TextBox.BackgroundColor3 = clr
+TextBox.Size = UDim2.new(0, 385, 0, 30)
+
+TextboxList.Name = "TextboxList"
+TextboxList.Parent = TextBox
+TextboxList.HorizontalAlignment = Enum.HorizontalAlignment.Center
+TextboxList.SortOrder = Enum.SortOrder.LayoutOrder
+TextboxList.VerticalAlignment = Enum.VerticalAlignment.Center
+
+TextBox_2.Parent = TextBox
+TextBox_2.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+TextBox_2.Size = UDim2.new(0, 383, 0, 28)
+TextBox_2.Font = Enum.Font.Gotham
+TextBox_2.ShowNativeInput = false
+TextBox_2.Text = texttb.." : "
+TextBox_2.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextBox_2.TextSize = 14.000
+
+TextBoxBoxtCorner.CornerRadius = UDim.new(0, 3)
+TextBoxBoxtCorner.Name = "TextBoxBoxtCorner"
+TextBoxBoxtCorner.Parent = TextBox_2
+
+TextboxCorner.CornerRadius = UDim.new(0, 3)
+TextboxCorner.Name = "TextboxCorner"
+TextboxCorner.Parent = TextBox
+
+TextBox_2.FocusLost:Connect(function(et)
+    if et then
+        pcall(callback,TextBox_2.Text)
+        TextBox_2.Text = texttb.." : "..TextBox_2.Text
+    end
+    
+end)
+
+TabWindows.CanvasSize = UDim2.new(0, 0, 0, TabsWindowsList.AbsoluteContentSize.Y+3)
+end
+
+function TabsDetail:Slider(textsld,base,maxs,callback)
+    local Slider = Instance.new("Frame")
+    local SliderCorner = Instance.new("UICorner")
+    local SliderList = Instance.new("UIListLayout")
+    local SliderPadding = Instance.new("UIPadding")
+    local BackSlider = Instance.new("Frame")
+    local SliderText = Instance.new("TextLabel")
+    local SliderCorner_2 = Instance.new("UICorner")
+    local BackSliderCorner = Instance.new("UICorner")
+    local BackSliderList = Instance.new("UIListLayout")
+    local Bar = Instance.new("Frame")
+    local Curcle = Instance.new("TextButton")
+    local CurcleCorner = Instance.new("UICorner")
+    local BarCorner = Instance.new("UICorner")
+    
+    Slider.Name = "Slider"
+    Slider.Parent = TabWindows
+    Slider.BackgroundColor3 = clr
+    Slider.Size = UDim2.new(0, 385, 0, 50)
+    
+    SliderCorner.CornerRadius = UDim.new(0, 3)
+    SliderCorner.Name = "SliderCorner"
+    SliderCorner.Parent = Slider
+    
+    SliderList.Name = "SliderList"
+    SliderList.Parent = Slider
+    SliderList.HorizontalAlignment = Enum.HorizontalAlignment.Center
+    SliderList.SortOrder = Enum.SortOrder.LayoutOrder
+    
+    SliderPadding.Name = "SliderPadding"
+    SliderPadding.Parent = Slider
+    SliderPadding.PaddingTop = UDim.new(0, 1)
+    
+    BackSlider.Name = "BackSlider"
+    BackSlider.Parent = Slider
+    BackSlider.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+    BackSlider.Position = UDim2.new(0.00259740255, 0, 0, 0)
+    BackSlider.Size = UDim2.new(0, 383, 0, 48)
+    
+    SliderText.Name = "SliderText"
+    SliderText.Parent = BackSlider
+    SliderText.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+    SliderText.Size = UDim2.new(0, 383, 0, 28)
+    SliderText.Font = Enum.Font.Gotham
+    SliderText.TextColor3 = Color3.fromRGB(188, 188, 188)
+    SliderText.TextSize = 14.000
+    SliderText.Text = textsld.." "..tostring(base)
+    SliderText.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
+    
+    SliderCorner_2.CornerRadius = UDim.new(0, 3)
+    SliderCorner_2.Name = "SliderCorner"
+    SliderCorner_2.Parent = SliderText
+    
+    BackSliderCorner.CornerRadius = UDim.new(0, 3)
+    BackSliderCorner.Name = "BackSliderCorner"
+    BackSliderCorner.Parent = BackSlider
+    
+    BackSliderList.Name = "BackSliderList"
+    BackSliderList.Parent = BackSlider
+    BackSliderList.HorizontalAlignment = Enum.HorizontalAlignment.Center
+    BackSliderList.SortOrder = Enum.SortOrder.LayoutOrder
+    
+    Bar.Name = "Bar"
+    Bar.Parent = BackSlider
+    Bar.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    Bar.BorderSizePixel = 0
+    Bar.Position = UDim2.new(0.369451702, 0, 0.583333313, 0)
+    Bar.Size = UDim2.new(0, 362, 0, 7)
+    
+    Curcle.Name = "Curcle"
+    Curcle.Parent = Bar
+    Curcle.Text = ""
+    Curcle.BackgroundColor3 = Color3.fromRGB(93, 93, 93)
+    Curcle.AnchorPoint = Vector2.new(0.5,0.5)
+    Curcle.Position = UDim2.new(0, 0, 0.5, 0)
+    Curcle.Size = UDim2.new(0, 12, 0, 12)
+    
+    
+    CurcleCorner.Name = "CurcleCorner"
+    CurcleCorner.Parent = Curcle
+    
+    BarCorner.Name = "BarCorner"
+    BarCorner.Parent = Bar
+
+    local uis = game:GetService("UserInputService")
+    local hold = false
+    local result
+    Curcle.MouseButton1Down:Connect(function()
+    hold = true
+    end)
+
+    uis.InputChanged:Connect(function(ip)
+if ip.UserInputType == Enum.UserInputType.MouseMovement then
+    if hold then
+        local mousepos = uis:GetMouseLocation()
+        local Relpos = mousepos-Bar.AbsolutePosition
+        pc = math.clamp(Relpos.X/Bar.AbsolutePosition.X,0,1)
+        Curcle.Position = UDim2.new(pc,0,0.5,0)
+        local percen = pc*100
+        result = math.floor((maxs/100)*percen)
+        SliderText.Text = textsld.." "..tostring(result)
+    end
+end
+
+    end)
+
+    uis.InputEnded:Connect(function(ip)
+        if hold then
+            if ip.UserInputType == Enum.UserInputType.MouseButton1 then
+                hold = false
+                pcall(callback,result)
+            end
+        end
+
+
+    TabWindows.CanvasSize = UDim2.new(0, 0, 0, TabsWindowsList.AbsoluteContentSize.Y+3)
+end)
+end
+TabBar.CanvasSize = UDim2.new(0, 0, 0, TabBarList.AbsoluteContentSize.Y)
+return TabsDetail
+end
+
+return Tabs
+    end
+    return Carl
