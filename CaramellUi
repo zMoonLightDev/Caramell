@@ -512,7 +512,7 @@ end
 return ddDetail
 end
 
-function TabsDetail:TextBox(texttb,callback)
+function TabsDetail:Textbox(texttb,callback)
     local TextBox = Instance.new("Frame")
 local TextboxList = Instance.new("UIListLayout")
 local TextBox_2 = Instance.new("TextBox")
