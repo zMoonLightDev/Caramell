@@ -372,7 +372,7 @@ end
 )
 TabWindows.CanvasSize = UDim2.new(0, 0, 0, TabsWindowsList.AbsoluteContentSize.Y+3)
 end
-function TabsDetail:Dropdown(textdd,list,callback)
+function TabsDetail:Dropdown(textdd,list,listclr,callback)
     local ddDetail = {}
     local tgdd = false
     local Dropdown = Instance.new("Frame")
@@ -459,7 +459,7 @@ function TabsDetail:Dropdown(textdd,list,callback)
     DropdownPutEvent.BackgroundTransparency = 1.000
     DropdownPutEvent.Size = UDim2.new(0, 383, 0, 28)
     DropdownPutEvent.Font = Enum.Font.Gotham
-    DropdownPutEvent.TextColor3 = Color3.fromRGB(255, 255, 255)
+    DropdownPutEvent.TextColor3 = listclr
     DropdownPutEvent.TextSize = 14.000
     DropdownPutEvent.Text = v
     
@@ -495,7 +495,7 @@ function TabsDetail:Dropdown(textdd,list,callback)
         DropdownPutEvent.BackgroundTransparency = 1.000
         DropdownPutEvent.Size = UDim2.new(0, 383, 0, 28)
         DropdownPutEvent.Font = Enum.Font.Gotham
-        DropdownPutEvent.TextColor3 = Color3.fromRGB(255, 255, 255)
+        DropdownPutEvent.TextColor3 = listclr
         DropdownPutEvent.TextSize = 14.000
         DropdownPutEvent.Text = v
         
