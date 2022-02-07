@@ -559,7 +559,7 @@ end)
 TabWindows.CanvasSize = UDim2.new(0, 0, 0, TabsWindowsList.AbsoluteContentSize.Y+3)
 end
 
-function TabsDetail:Slider(textsld,base,maxs,callback)
+function TabsDetail:Slider(textsld,maxs,callback)
     local Slider = Instance.new("Frame")
     local SliderCorner = Instance.new("UICorner")
     local SliderList = Instance.new("UIListLayout")
@@ -605,7 +605,7 @@ function TabsDetail:Slider(textsld,base,maxs,callback)
     SliderText.Font = Enum.Font.Gotham
     SliderText.TextColor3 = Color3.fromRGB(188, 188, 188)
     SliderText.TextSize = 14.000
-    SliderText.Text = textsld.." "..tostring(base)
+    SliderText.Text = textsld.." 0"
     SliderText.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
     
     SliderCorner_2.CornerRadius = UDim.new(0, 3)
@@ -667,10 +667,10 @@ end
 
     uis.InputEnded:Connect(function(ip)
         if hold then
-            if ip.UserInputType == Enum.UserInputType.MouseButton1 then
-                hold = false
-                pcall(callback,result)
-            end
+if ip.UserInputType == Enum.UserInputType.MouseButton1 then
+            hold = false
+            pcall(callback,result)
+        end
         end
 
 
