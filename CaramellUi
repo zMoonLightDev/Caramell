@@ -308,6 +308,7 @@ end
 
 function TabsDetail:Toggle(texttg,status,callback)
 local tg = status
+local Toggles = {}
 local Toggle = Instance.new("Frame")
 local ToggleCorner = Instance.new("UICorner")
 local ToggleList = Instance.new("UIListLayout")
@@ -369,7 +370,28 @@ ToggleEvent.MouseButton1Click:Connect(function()
     pcall(callback,tg)
 
 end
+function Toggles:Switch()
+    if tg == false then
+        ToggleEvent.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+        wait()
+    else
+        ToggleEvent.BackgroundColor3 = Color3.fromRGB(138, 138, 138)
+        wait()
+    end
+    tg = not tg
+end
+function Toggles:SetTrue()
+    ToggleEvent.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+    wait()
+    tg = true
+end
+function Toggles:SetFalse()
+    ToggleEvent.BackgroundColor3 = Color3.fromRGB(138, 138, 138)
+    wait()
+    tg = false
+end
 )
+return Toggles
 TabWindows.CanvasSize = UDim2.new(0, 0, 0, TabsWindowsList.AbsoluteContentSize.Y+3)
 end
 function TabsDetail:Dropdown(textdd,list,listclr,callback)
@@ -474,6 +496,7 @@ function TabsDetail:Dropdown(textdd,list,listclr,callback)
     end
 
     function ddDetail:Refresh(lists)
+        DropdownEvent.Text = textdd
         for i,v in next, DropItem:GetChildren() do
             if v.Name == "DropdownPutEvent" then
                 v:Destroy()
