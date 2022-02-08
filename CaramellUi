@@ -460,9 +460,11 @@ function TabsDetail:Dropdown(textdd,list,listclr,callback)
     DropdownEvent.MouseButton1Click:Connect(function()
         if tgdd == false then
             Dropdown:TweenSize(UDim2.new(0, 385,0, 120),Enum.EasingDirection.Out, Enum.EasingStyle.Quart, .6, true)
+            TabWindows.CanvasSize = UDim2.new(0, 0, 0, TabsWindowsList.AbsoluteContentSize.Y+3)
             wait()
         else
             Dropdown:TweenSize(UDim2.new(0, 385,0, 30),Enum.EasingDirection.Out, Enum.EasingStyle.Quart, .6, true)
+            TabWindows.CanvasSize = UDim2.new(0, 0, 0, TabsWindowsList.AbsoluteContentSize.Y+3)
             wait()
         end
         tgdd = not tgdd
@@ -529,6 +531,7 @@ function TabsDetail:Dropdown(textdd,list,listclr,callback)
             pcall(callback,v)
             DropdownEvent.Text = textdd..": "..v
             Dropdown:TweenSize(UDim2.new(0, 385,0, 30),Enum.EasingDirection.Out, Enum.EasingStyle.Quart, .6, true)
+            TabWindows.CanvasSize = UDim2.new(0, 0, 0, TabsWindowsList.AbsoluteContentSize.Y+3)
             wait()
             tgdd = not tgdd
         end)
