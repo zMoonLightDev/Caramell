@@ -369,7 +369,7 @@ ToggleEvent.MouseButton1Click:Connect(function()
     tg = not tg
     pcall(callback,tg)
 
-end
+end)
 function Toggles:Switch()
     if tg == false then
         ToggleEvent.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
@@ -390,10 +390,10 @@ function Toggles:SetFalse()
     wait()
     tg = false
 end
-)
-return Toggles
 TabWindows.CanvasSize = UDim2.new(0, 0, 0, TabsWindowsList.AbsoluteContentSize.Y+3)
+return Toggles
 end
+
 function TabsDetail:Dropdown(textdd,list,listclr,callback)
     local ddDetail = {}
     local tgdd = false
