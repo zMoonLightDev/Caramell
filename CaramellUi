@@ -379,16 +379,19 @@ function Toggles:Switch()
         wait()
     end
     tg = not tg
+    pcall(callback,tg)
 end
 function Toggles:SetTrue()
     ToggleEvent.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
     wait()
     tg = true
+    pcall(callback,tg)
 end
 function Toggles:SetFalse()
     ToggleEvent.BackgroundColor3 = Color3.fromRGB(138, 138, 138)
     wait()
     tg = false
+    pcall(callback,tg)
 end
 TabWindows.CanvasSize = UDim2.new(0, 0, 0, TabsWindowsList.AbsoluteContentSize.Y+3)
 return Toggles
